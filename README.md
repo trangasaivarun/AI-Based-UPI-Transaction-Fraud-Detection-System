@@ -130,7 +130,7 @@ Model evaluation was performed using hold-out validation and k-fold cross-valida
 
 **Title:** Comparative Analysis of UPI Fraud Detection Using Ensemble Learning  
 **Conference:** 2025 International Conference on Computational Robotics, Testing and Engineering Evaluation (ICCRTEE)  
-**DOI:** [10.1109/ICCRTEE64519.2025.11052942](10.1109/ICCRTEE64519.2025.11052942)
+**DOI:** [10.1109/ICCRTEE64519.2025.11052942](https://ieeexplore.ieee.org/document/11052942)
 
 ---
 
