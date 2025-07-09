@@ -19,7 +19,15 @@ st.set_page_config(
 )
 
 # Title and description
-st.title("Welcome to your own UPI Transaction Fraud Detector!")
+st.markdown(
+    """
+    <div style="display: flex; align-items: center; gap: 16px;">
+        <img src="https://img.icons8.com/ios-filled/100/lock--v1.png" width="60"/>
+        <h1 style="margin-bottom: 0;">UPI Fraud Detection</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 st.markdown("""
 This application helps detect fraudulent UPI transactions using machine learning.
 You can either:
@@ -170,66 +178,48 @@ page = st.sidebar.selectbox("Choose Input Method", ["Single Transaction", "Batch
 if page == "Single Transaction":
     st.header("Enter Transaction Details")
     
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        # Removed max_value parameter to allow any amount
-        amount = st.number_input("Transaction Amount (₹)", 
-                               min_value=0.0, 
-                               value=100.0, 
-                               step=100.0,  # Added step parameter for easier input
-                               format="%.2f")  # Added format parameter for better display
-        transaction_type = st.selectbox(
-            "Transaction Type",
-            tt
-        )
-        payment_gateway = st.selectbox(
-            "Payment Gateway",
-            pg
-        )
-    
-    with col2:
-        transaction_state = st.selectbox(
-            "Transaction State",
-            ts
-        )
-        
-        merchant_category = st.selectbox(
-            "Merchant Category",
-            mc
-        )
-        transaction_date = st.date_input("Transaction Date", datetime.datetime.now())
-    
-    if st.button("Check Transaction"):
-        if validate_input(amount, transaction_date):
-            # Create input dataframe
-            input_df = pd.DataFrame({
-                'amount': [amount],
-                'Transaction_Type': [transaction_type],
-                'Payment_Gateway': [payment_gateway],
-                'Transaction_State': [transaction_state],
-          
-                'Merchant_Category': [merchant_category],
-                'Year': [transaction_date.year],
-                'Month': [transaction_date.month]
-            })
-            
-            # Preprocess data
-            processed_data = preprocess_for_prediction(input_df)
-            
-            try:
-                # Make prediction
-                prediction = loaded_model.predict(processed_data)
-                probability = loaded_model.predict_proba(processed_data)
+    with st.form("single_txn_form"):
+        st.markdown("#### 📝 Enter Transaction Details")
+        col1, col2 = st.columns(2)
+        with col1:
+            amount = st.number_input("💰 Transaction Amount (₹)", min_value=0.0, value=100.0, step=100.0, format="%.2f", help="Enter the transaction amount in INR.")
+            transaction_type = st.selectbox("🔄 Transaction Type", tt, help="Select the type of transaction.")
+            payment_gateway = st.selectbox("🏦 Payment Gateway", pg, help="Select the payment gateway used.")
+        with col2:
+            transaction_state = st.selectbox("📍 Transaction State", ts, help="Select the state where the transaction occurred.")
+            merchant_category = st.selectbox("🛒 Merchant Category", mc, help="Select the merchant category.")
+            transaction_date = st.date_input("📅 Transaction Date", datetime.datetime.now(), help="Select the date of the transaction.")
+        submitted = st.form_submit_button("🚦 Check Transaction")
+        if submitted:
+            if validate_input(amount, transaction_date):
+                # Create input dataframe
+                input_df = pd.DataFrame({
+                    'amount': [amount],
+                    'Transaction_Type': [transaction_type],
+                    'Payment_Gateway': [payment_gateway],
+                    'Transaction_State': [transaction_state],
+              
+                    'Merchant_Category': [merchant_category],
+                    'Year': [transaction_date.year],
+                    'Month': [transaction_date.month]
+                })
                 
-                # Display results
-                display_statistics(amount, merchant_category, transaction_state)
-                display_prediction(prediction[0], probability)
-            except Exception as e:
-                st.error(f"Error making prediction: {str(e)}")
-                st.write("Debug info:")
-                st.write(f"Processed data shape: {processed_data.shape}")
-                st.write(f"Processed columns: {processed_data.columns.tolist()}")
+                # Preprocess data
+                processed_data = preprocess_for_prediction(input_df)
+                
+                try:
+                    # Make prediction
+                    prediction = loaded_model.predict(processed_data)
+                    probability = loaded_model.predict_proba(processed_data)
+                    
+                    # Display results
+                    display_statistics(amount, merchant_category, transaction_state)
+                    display_prediction(prediction[0], probability)
+                except Exception as e:
+                    st.error(f"Error making prediction: {str(e)}")
+                    st.write("Debug info:")
+                    st.write(f"Processed data shape: {processed_data.shape}")
+                    st.write(f"Processed columns: {processed_data.columns.tolist()}")
 
 else:
     st.header("Upload CSV File for Batch Processing")
