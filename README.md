@@ -136,7 +136,44 @@ Model evaluation was performed using hold-out validation and k-fold cross-valida
 
 ## 🛠️ How to Run This Project Locally
 
-1. **Clone the repository**
+Follow these steps to set up and run the UPI Fraud Detection project on your local machine.
+
+### 1️⃣ Clone the Repository
+
 ```bash
-git clone https://github.com/your-username/UPI-Fraud-Detection.git
+git clone https://github.com/trangasaivarun/UPI-Fraud-Detection.git
 cd UPI-Fraud-Detection
+```
+
+### 2️⃣ Create and Activate Virtual Environment (Optional but Recommended)
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Launch the Streamlit App
+
+```bash
+streamlit run streamlit_app.py
+```
+
+### 5️⃣ Access the App
+
+After running the above command, open your browser and go to:
+
+```
+http://localhost:8501
+```
+
+
+
