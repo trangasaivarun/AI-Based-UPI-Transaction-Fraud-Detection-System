@@ -1,4 +1,6 @@
-# 🔐 UPI Fraud Detection System using Machine Learning
+# 🔐 AI-Based UPI Transaction Fraud Detection System
+
+
 
 An end-to-end web-based machine learning project that detects **fraudulent UPI transactions**. This tool enables users to verify single or batch UPI transactions via a simple Streamlit interface and is backed by a highly accurate XGBoost classifier trained on real-world data.
 
