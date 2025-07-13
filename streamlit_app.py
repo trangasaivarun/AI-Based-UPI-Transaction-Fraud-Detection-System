@@ -13,7 +13,7 @@ from xgboost import XGBClassifier
 
 # Page configuration
 st.set_page_config(
-    page_title="AI-Based UPI Transaction Fraud Detection System",
+    page_title="UPI Fraud Detection",
     page_icon="🔒",
     layout="wide"
 )
