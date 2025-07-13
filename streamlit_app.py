@@ -311,18 +311,6 @@ st.markdown(
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="28"/>
                 </a>
             </div>
-            <div style="border: 1px solid #eee; border-radius: 10px; padding: 16px 24px; min-width: 200px;">
-                <b>Telagamsetty Viswajith Gupta</b><br>
-                <a href="https://www.linkedin.com/in/viswajith-gupta-telagamsetty-1b71812a2/" target="_blank">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="28"/>
-                </a>
-            </div>
-            <div style="border: 1px solid #eee; border-radius: 10px; padding: 16px 24px; min-width: 200px;">
-                <b>Dokala Manoj Kumar</b><br>
-                <a href="https://www.linkedin.com/in/manoj-dokala-37932b2b2/" target="_blank">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="28"/>
-                </a>
-            </div>
         </div>
     </div>
     """,
